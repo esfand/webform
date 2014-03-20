@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>Webforms demo - JSF</title>
+</h:head>
+<h:body>
+	<h1>Please enter your personal information:</h1>
+	<h:form>
+		<h:messages/>
+		<div>
+			<label>First name:</label>
+			<h:inputText value="#{form.firstName}" label="First name" required="true">
+				<f:validateLength minimum="3" maximum="20" />
+			</h:inputText>
+		</div>
+		<div>
+			<label>Age:</label> 
+			<h:inputText value="#{form.age}" label="Age" required="true">
+				<f:convertNumber groupingUsed="false" integerOnly="true"/>
+				<f:validateLongRange minimum="0" maximum="130" />
+			</h:inputText>
+		</div>
+		<h:commandButton value="Submit the form" action="#{form.submit}">
+			<f:ajax execute="@form" render="@form"/>
+		</h:commandButton>
+	</h:form>
+</h:body>
+</html>
